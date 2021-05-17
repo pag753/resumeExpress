@@ -28,9 +28,11 @@ router.post('/telegram', async function(req, res, next) {
       ipInfo.message = 'Compa, vieron tu CV: PDF Español'
       break;
   }
-  let token = "1616239974:AAF7HZEnSgJOz9zHqSnSAAi1hMqQRfp1Zm0";
-  let chatID = '1143737307';
-  let url = `https://api.telegram.org/bot${ token }/sendMessage`
+  let data = await axios.get('https://resumepablo.herokuapp.com/telegram.json')
+  console.log(data.data)
+  let tkn = data.data.tkn;
+  let chatID = data.data.chat_id;
+  let url = `https://api.telegram.org/bot${ tkn }/sendMessage`
   await axios.get(url, {
     params: {
       chat_id: chatID,
