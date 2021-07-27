@@ -36,7 +36,7 @@ router.post('/telegram', async function(req, res, next) {
   await axios.get(url, {
     params: {
       chat_id: chatID,
-      text: JSON.stringify(ipInfo)
+      text: JSON.stringify(ipInfo, undefined, 2)
     }
   })
   res.status(200)
