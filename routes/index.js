@@ -28,10 +28,8 @@ router.post('/telegram', async function(req, res, next) {
       ipInfo.message = 'Compa, vieron tu CV: PDF Español'
       break;
   }
-  let data = await axios.get('https://resumepablo.herokuapp.com/telegram.json')
-  console.log(data.data)
-  let tkn = data.data.tkn;
-  let chatID = data.data.chat_id;
+  let tkn = process.env.tkn;
+  let chatID = process.env.chatID;
   let url = `https://api.telegram.org/bot${ tkn }/sendMessage`
   await axios.get(url, {
     params: {
