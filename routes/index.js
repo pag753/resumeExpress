@@ -8,10 +8,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 */
-router.post('/telegram', async function(req, res, next) {
+router.post('/telegram', async function (req, res, next) {
   let body = req.body
   let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-  let ipInfo = await axios.get(`https://ipinfo.io/${ ip }/json`)
+  let ipInfo = await axios.get(`https://ipinfo.io/${ip}/json`)
   ipInfo = JSON.parse(JSON.stringify(ipInfo.data))
   ipInfo.device = body.device
   switch (body.tipo) {
@@ -30,7 +30,7 @@ router.post('/telegram', async function(req, res, next) {
   }
   let tkn = process.env.tkn;
   let chatID = process.env.chatID;
-  let url = `https://api.telegram.org/bot${ tkn }/sendMessage`
+  let url = `https://api.telegram.org/bot${tkn}/sendMessage`
   await axios.get(url, {
     params: {
       chat_id: chatID,
