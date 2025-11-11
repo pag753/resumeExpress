@@ -31,13 +31,14 @@ router.post('/telegram', async function (req, res, next) {
   let tkn = process.env.tkn;
   let chatID = process.env.chatID;
   let url = `https://api.telegram.org/bot${tkn}/sendMessage`;
-  await axios.get(url, {
+  res.message = await axios.get(url, {
     params: {
       chat_id: chatID,
       text: JSON.stringify(ipInfo, undefined, 2)
     }
   });
   res.status(200);
+  return res; 
 });
 
 module.exports = router;
